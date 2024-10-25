@@ -32,7 +32,7 @@ $migration_tags = $_.migration_tags
 
         Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
         Write-Host "Tag Assignment completed"
-
+        }
     }
 
     Try {
@@ -42,26 +42,27 @@ $migration_tags = $_.migration_tags
         Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
         Write-Host "Tag Assignment completed"
     } Catch {
-    Write-Host "Tag name you entered not found, let's create one"
-    $YesOrNo = Read-Host "Please confirm, if you would like to proceed further (Y/N)"
+        Write-Host "Tag name you entered not found, let's create one"
+        $YesOrNo = Read-Host "Please confirm, if you would like to proceed further (Y/N)"
         if(($YesOrNo -eq 'y') -or ($YesOrNo -eq 'Y')){
-            $uTagCatName = $category
+                $uTagCatName = $category
 
-        $GetVMTagCat = Get-TagCategory -Name $uTagCatName -ErrorAction Stop
-        Write-Host "TagCategory found"
-        $uNewTagName = $migration_tags
-        New-Tag -Name $uNewTagName -Category $GetVMTagCat
+            $GetVMTagCat = Get-TagCategory -Name $uTagCatName -ErrorAction Stop
+            Write-Host "TagCategory found"
+            $uNewTagName = $migration_tags
+            New-Tag -Name $uNewTagName -Category $GetVMTagCat
 
-        #Assign Tag to VM
-        $GetVMTag = Get-Tag -Name $migration_tags -ErrorAction Stop
-        Write-Host "$migration_tags tag found!"
+            #Assign Tag to VM
+            $GetVMTag = Get-Tag -Name $migration_tags -ErrorAction Stop
+            Write-Host "$migration_tags tag found!"
 
-        Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
-        Write-Host "Tag Assignment completed"
+            Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
+            Write-Host "Tag Assignment completed"
+
+        }
+        
 
     }
-    
-}
 
 }
  Write-Host "List Completed"
