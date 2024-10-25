@@ -1,9 +1,3 @@
-$VMNames = "staging-000586"
-$VMNames.Name | Out-File .\vmnames.txt
-$FileContent = Get-Content .\vmnames.txt
-$uTagName = "DB-Prod"
-
-
 # csv = hostname,category,bkp_tags_1,migration_tags
 import-csv vmnames.csv -useculture | foreach{
 $vmname = $_.hostname
