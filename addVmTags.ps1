@@ -13,16 +13,16 @@ $migration_tags = $_.migration_tags
         $GetVMTag = Get-Tag -Name $bkp_tags_1  -ErrorAction Stop
         Write-Host "$bkp_tags_1 tag found!"
         Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
-        Write-Host "Tag Assignment completed"
+        Write-Host "Tag Assignment completed - $bkp_tags_1 "
         
     } Catch {
-    Write-Host "Tag name you entered not found, let's create one"
+    Write-Host "Tag name you entered not found, let's create one - $bkp_tags_1 "
     $YesOrNo = Read-Host "Please confirm, if you would like to proceed further (Y/N)"
         if(($YesOrNo -eq 'y') -or ($YesOrNo -eq 'Y')){
             $uTagCatName = $category
 
         $GetVMTagCat = Get-TagCategory -Name $uTagCatName -ErrorAction Stop
-        Write-Host "TagCategory found"
+        Write-Host "TagCategory found for tag:  $bkp_tags_1  "
         $uNewTagName = $bkp_tags_1 
         New-Tag -Name $uNewTagName -Category $GetVMTagCat
 
@@ -31,7 +31,7 @@ $migration_tags = $_.migration_tags
         Write-Host "$bkp_tags_1 tag found!"
 
         Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
-        Write-Host "Tag Assignment completed"
+        Write-Host "Tag Assignment completed - $bkp_tags_1 "
         }
     }
 
@@ -42,13 +42,13 @@ $migration_tags = $_.migration_tags
         Get-VM $vmname | New-TagAssignment -Tag $GetVMTag
         Write-Host "Tag Assignment completed"
     } Catch {
-        Write-Host "Tag name you entered not found, let's create one"
+        Write-Host "Tag name you entered not found, let's create one - $migration_tags"
         $YesOrNo = Read-Host "Please confirm, if you would like to proceed further (Y/N)"
         if(($YesOrNo -eq 'y') -or ($YesOrNo -eq 'Y')){
                 $uTagCatName = $category
 
             $GetVMTagCat = Get-TagCategory -Name $uTagCatName -ErrorAction Stop
-            Write-Host "TagCategory found"
+            Write-Host "TagCategory found for tag: $migration_tags "
             $uNewTagName = $migration_tags
             New-Tag -Name $uNewTagName -Category $GetVMTagCat
 
